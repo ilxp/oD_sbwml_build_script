@@ -477,21 +477,20 @@ if [ "$platform" = "x86_64" ]; then
         rm -rf $kmodpkg_name
     fi
     # OTA json
-        #mkdir -p ota
-		mkdir -p vermd5  #位置是openwrt下。即openwrt/vermd5
+        mkdir -p ota   #位置是openwrt下。即ota/vermd5
       	#改用md5
 		md5=$(md5sum bin/targets/x86/64/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
-        cat > vermd5/v5-oD.txt <<EOF
+        cat > ota/vermd5-oD.txt <<EOF
 $CURRENT_DATE2
 $md5 
 EOF
-       #进行vermd5目录压缩，并重命名，#位置是openwrt下
-	   tar zcf x86_64-vermd5-oD.tar.gz vermd5
+       #进行ota目录压缩，并重命名，#位置是openwrt下
+	   #tar zcf x86_64-ota-oD.tar.gz ota
 	   
 	   #在github action的调用：  
-	   #echo build_dir="/builder" >> "$GITHUB_ENV"
-	   #${{ env.build_dir }}/openwrt/*-*.tar.gz
-	   rm -rf vermd5
+	   ##echo build_dir="/builder" >> "$GITHUB_ENV"
+	   ##${{ env.build_dir }}/openwrt/*-*.tar.gz
+	   #rm -rf ota   
 	  
     # Backup download cache
     if [ "$isCN" = "CN" ] && [ "$1" = "rc2" ]; then

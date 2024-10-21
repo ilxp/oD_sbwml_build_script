@@ -755,10 +755,10 @@ git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugi
 cp ../.././diydata/data/zsh/.zshrc .
 popd
 
-# Change default shell to zsh将系统bin/ash/改为usr/bin/zsh
+# Change default shell to zsh将系统/bin/ash/改为/usr/bin/zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
-#sbwml大神已经改成bash了。所以讲bash改为zsh
+#sbwml大神已经改成bash了。所以将bash改为zsh
 sed -i 's/\/bin\/bash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 #8、# Docker 容器  sbwml已经有了
