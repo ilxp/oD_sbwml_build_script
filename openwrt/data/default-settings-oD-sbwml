@@ -105,7 +105,7 @@ sed -i 's,downloads.openwrt.org,mirror.sjtu.edu.cn/openwrt,g' /etc/opkg/distfeed
 #sed -i 's#downloads.openwrt.org#mirrors.cloud.tencent.com/lede#g' /etc/opkg/distfeeds.conf
 #sed -i 's/downloads.openwrt.org/mirrors.cloud.tencent.com\/openwrt/g' /etc/opkg/distfeeds.conf
 
-sed -i 's/snapshots/releases\/23.05.5/g; }'  /etc/opkg/distfeeds.conf
+sed -i 's/snapshots/releases\/23.05.5/g'  /etc/opkg/distfeeds.conf
 
 #全部注释掉软件包的src
 #sed -i 's/src\/gz/\#src\/gz/g' /etc/opkg/distfeeds.conf
@@ -120,7 +120,7 @@ sed -i 's/snapshots/releases\/23.05.5/g; }'  /etc/opkg/distfeeds.conf
 #uci commit uhttpd
 #/etc/init.d/uhttpd restart
 
-[ -f '/bin/bash' ] && sed -i 's|root:x:0:0:root:/root:/bin/ash|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd
+#[ -f '/bin/bash' ] && sed -i 's|root:x:0:0:root:/root:/bin/ash|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 
