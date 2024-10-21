@@ -485,13 +485,32 @@ $CURRENT_DATE2
 $md5 
 EOF
        #进行ota目录压缩，并重命名，#位置是openwrt下
-	   #tar zcf x86_64-ota-oD.tar.gz ota
+	   #tar zcf x86_64-ota.tar.gz ota
 	   
 	   #在github action的调用：  
 	   ##echo build_dir="/builder" >> "$GITHUB_ENV"
 	   ##${{ env.build_dir }}/openwrt/*-*.tar.gz
-	   #rm -rf ota   
-	  
+	   #rm -rf ota 
+	   
+	 #采用ota升级
+	 OTA_URL="https://github.com/ilxp/oprx-builder/releases/download"
+	 VERSION=$(sed 's/v//g' version.txt)
+     SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
+     cat > ota/fw.json <<EOF
+{
+  "x86_64": [
+    {
+      "build_date": "$CURRENT_DATE",
+      "sha256sum": "$SHA256",
+      "url": "$OTA_URL/firmware/oprx-oD-x86-64-generic-squashfs-combined-efi.img.gz"
+    }
+  ]
+}
+EOF
+	#进行ota目录压缩，并重命名，#位置是openwrt下
+	tar zcf oprx-ota.tar.gz ota
+	
+	
     # Backup download cache
     if [ "$isCN" = "CN" ] && [ "$1" = "rc2" ]; then
         rm -rf dl/geo* dl/go-mod-cache
