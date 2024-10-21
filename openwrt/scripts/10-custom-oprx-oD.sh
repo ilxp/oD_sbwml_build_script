@@ -848,17 +848,14 @@ patch -p1 <./diydata/data/patches/def_set_interfaces_lan_wan.patch
 
 #15、在线升级（通过对链接的前缀10.16.2024进行比较大小进行升级）
  #原地址：https://github.com/ilxp/builder/releases/download/标签名/10.16.2024-oprx-x86-64-generic-squashfs-combined-efi.img.gz
- #原地址：https://raw.githubusercontent.com/ilxp/builder/main/vermd5/v5.txt  其中firmware为固定的tag名称。在Release发布的时候注意。
+ #原地址：https://github.com/ilxp/builder/releases/download/标签名/vermd5.txt  其中firmware为固定的tag名称。在Release发布的时候注意。
 git clone https://github.com/ilxp/openwrt-gpsysupgrade-kiddin9  package/diy/openwrt-gpsysupgrade
 #改固件（要先改）
 sed -i "s/oprx/oprx-oD/g" package/diy/openwrt-gpsysupgrade/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 #改仓库名builder
 sed -i "s/builder/oprx-builder/g" package/diy/openwrt-gpsysupgrade/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 #改vermd5名称：
-sed -i "s/v5/v5-oD/g" package/diy/openwrt-gpsysupgrade/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
-
-#改后的地址：https://github.com/ilxp/oprx-builder/releases/download/标签名/10.16.2024-oprx-oD-x86-64-generic-squashfs-combined-efi.img.gz
-#改后的地址：https://raw.githubusercontent.com/ilxp/oprx-builder/main/vermd5/v5-oD.txt  #对应固件分类。
+sed -i "s/vermd5/vermd5-oD/g" package/diy/openwrt-gpsysupgrade/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 ##全部调到系统菜单
 sed -i 's/services/system/g' package/diy/openwrt-gpsysupgrade/luci-app-gpsysupgrade/luasrc/controller/*.lua
 sed -i 's/services/system/g' package/diy/openwrt-gpsysupgrade/luci-app-gpsysupgrade/luasrc/view/admin_status/index/*.htm
