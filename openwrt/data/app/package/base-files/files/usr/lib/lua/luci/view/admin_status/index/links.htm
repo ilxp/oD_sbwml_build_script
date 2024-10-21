@@ -1,0 +1,14 @@
+<% if luci.sys.exec("echo -n `uci -q get base_config.@status[0].links`") ~= "0" then %>
+<script>
+		var links = document.createElement('div');
+		links.innerHTML ='<div class="table"><div class="tr"><div class="td left">开源致谢</div><div class="td left" width="25%"><a href="https://afdian.com/a/ioprx/plan" target="_blank" style="color:orangered">赞助我会做得更好！</a></div><div class="td left" width="25%"><a href="https://www.oprx.top/" target="_blank">欢迎使用OprX_oD系列！</a></div><div class="td left" width="25%"><a href="https://github.com/sbwml" target="_blank">源于Sbwml大神最新稳定发行版！</a></div></div></div>';	
+	        setTimeout(function(){
+		var telegram = document.querySelectorAll(".cbi-section")[0];
+		telegram.appendChild(links);
+		}, 1500);
+		setTimeout(function(){
+		var telegram = document.querySelectorAll(".cbi-section")[0];
+		telegram.appendChild(links);
+		}, 2400);
+</script>
+<%end%>

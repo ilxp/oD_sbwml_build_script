@@ -1,0 +1,322 @@
+http:
+  pprof:
+    port: 54
+    enabled: false
+  address: 0.0.0.0:3333
+  session_ttl: 720h
+users: []
+auth_attempts: 5
+block_auth_min: 15
+http_proxy: ""
+language: zh-cn
+theme: auto
+dns:
+  bind_hosts:
+    - 127.0.0.1
+  port: 54
+  anonymize_client_ip: false
+  ratelimit: 0
+  ratelimit_whitelist: []
+  refuse_any: false
+  upstream_dns:
+    - '#127.0.0.1:6053'
+    - tls://dns.alidns.com
+    - https://dns.alidns.com/dns-query
+    - tls://dot.pub
+    - https://doh.pub/dns-query
+    - https://dns.pub/dns-query
+    - tls://dot.360.cn
+    - https://doh.360.cn/dns-query
+    - tls://8.8.8.8
+    - tls://8.8.4.4
+    - tls://dns.google
+    - https://dns.google/dns-query
+    - tls://1.1.1.1
+    - tls://1.0.0.1
+    - https://dns.cloudflare.com/dns-query
+    - 2400:3200::1
+    - 240c::6666
+    - 2001:4860:4860::8888
+  upstream_dns_file: ""
+  bootstrap_dns:
+    - 221.12.1.227
+    - 2408:8888::8
+  fallback_dns: []
+  all_servers: false
+  fastest_addr: false
+  fastest_timeout: 1s
+  allowed_clients:
+    - 127.0.0.1
+  disallowed_clients: []
+  blocked_hosts:
+    - version.bind
+    - id.server
+    - hostname.bind
+  trusted_proxies:
+    - 127.0.0.0/8
+    - ::1/128
+  cache_size: 0
+  cache_ttl_min: 0
+  cache_ttl_max: 0
+  cache_optimistic: false
+  bogus_nxdomain: []
+  aaaa_disabled: false
+  enable_dnssec: false
+  edns_client_subnet:
+    custom_ip: ""
+    enabled: false
+    use_custom: false
+  max_goroutines: 0
+  handle_ddr: true
+  ipset: []
+  ipset_file: ""
+  bootstrap_prefer_ipv6: false
+  upstream_timeout: 10s
+  private_networks: []
+  use_private_ptr_resolvers: true
+  local_ptr_upstreams: []
+  use_dns64: false
+  dns64_prefixes: []
+  serve_http3: false
+  use_http3_upstreams: false
+tls:
+  enabled: false
+  server_name: ""
+  force_https: false
+  port_https: 443
+  port_dns_over_tls: 853
+  port_dns_over_quic: 784
+  port_dnscrypt: 0
+  dnscrypt_config_file: ""
+  allow_unencrypted_doh: false
+  certificate_chain: ""
+  private_key: ""
+  certificate_path: ""
+  private_key_path: ""
+  strict_sni_check: false
+querylog:
+  ignored: []
+  interval: 24h
+  size_memory: 1000
+  enabled: true
+  file_enabled: true
+statistics:
+  ignored: []
+  interval: 24h
+  enabled: true
+filters:
+  - enabled: false
+    url: https://adrules.top/dns.txt
+    name: Cats-team-AdRules DNS List
+    id: 1603860858
+  - enabled: false
+    url: https://raw.githubusercontent.com/Cats-Team/AdRules/main/adblock_plus.txt
+    name: AdRules AdBlock List Plus
+    id: 1584462286
+  - enabled: false
+    url: https://anti-ad.net/easylist.txt
+    name: Anti-AD
+    id: 1580820695
+  - enabled: false
+    url: https://gist.githubusercontent.com/Ewpratten/a25ae63a7200c02c850fede2f32453cf/raw/b9318009399b99e822515d388b8458557d828c37/hosts-yt-ads
+    name: YouTube-AdBlock
+    id: 1584350199
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad-pc.txt
+    name: Halflife整合规则
+    id: 1667399831
+  - enabled: false
+    url: https://github.com/xinggsf/Adblock-Plus-Rule/raw/master/mv.txt
+    name: 乘风视频
+    id: 1667399832
+  - enabled: true
+    url: https://raw.githubusercontent.com/banbendalao/ADgk/master/ADgk.txt
+    name: ADgk手机去广告
+    id: 1698316677
+whitelist_filters:
+  - enabled: true
+    url: https://gitlab.com/cats-team/adrules/-/raw/main/allow-domains-list.txt
+    name: cats-team-allow
+    id: 1667356202
+user_rules:
+  - '#放行'
+  - '@@||exp.sug.browser.miui.com^$important'
+  - '@@||dj.1688.com^$important'
+  - '@@||click.simba.taobao.com^$important'
+  - '@@||appsupport.qq.com^$important'
+  - '@@||data.bilibili.com^$important'
+  - '@@||jumpluna.58.com^$important'
+  - '@@||oss-asq-static.11222.cn^$important'
+  - '@@||unet.ucweb.com^$important'
+  - '@@||kiees.com'
+  - '@@||alimama.com'
+  - '@@||baijiahao.baidu.com'
+  - '#下面是平时抓取的创维智能电视、百度百家号、IOS的OTA更新屏蔽地址，拷贝粘贴到自定义过滤规则表里点击应用就可以了'
+  - '||active.tc.skysrt.com^'
+  - '||ad.3.cn^'
+  - '||admaster.com.cn^'
+  - '||alog.umeng.com^'
+  - '||amdcopen.m.taobao.com^'
+  - '||api.app.skysrt.com^'
+  - '||api.device.skysrt.com^'
+  - '||api.hoisin.hw.coocaatv.com^'
+  - '||api.home.skysrt.com^'
+  - '||api.skyworthiot.com^'
+  - '||api.upgrade.skysrt.com^'
+  - '||api-app.coocaa.ottcn.com^'
+  - '||api-home.coocaa.ottcn.com^'
+  - '||api-home.skysrt.com^'
+  - '||api-upgrade.coocaa.ottcn.com^'
+  - '||app.snm0516.aisee.tv^'
+  - '||btrace.play.t002.ottcn.com^'
+  - '||business.video.tc.skysrt.com^'
+  - '||cl-dl.cc0808.com^'
+  - '||clog.skysrt.com^'
+  - '||conf-darwin.xycdn.com^'
+  - '||connect.play.aiseet.atianqi.com^'
+  - '||data-dl.skysrt.com^'
+  - '||data-hoisin.coocaa.com^'
+  - '||dl.skysrt.com^'
+  - '||dp3.play.t002.ottcn.com^'
+  - '||gs.getui.com^'
+  - '||hoisin.coocaa.com^'
+  - '||hoisin.coocaatv.com^'
+  - '||irs01.com^'
+  - '||kaola.com^'
+  - '||livep.l.t002.ottcn.com^'
+  - '||log.skysrt.com^'
+  - '||mdp-at.geely.com^'
+  - '||member.coocaa.com^'
+  - '||miaozhen.com^'
+  - '||mtrace.play.t002.ottcn.com^'
+  - '||ocsp.int-x3.letsencrypt.org^'
+  - '||p.tencentmind.com^'
+  - '||play.t002.ottcn.com^'
+  - '||push.tc.skysrt.com^'
+  - '||push.tvos.skysrt.com^'
+  - '||puui.qpic.cn^'
+  - '||qr.coocaa.com^'
+  - '||res.hoisin.coocaatv.com^'
+  - '||rpc-tc.skysrt.com^'
+  - '||rpt-gdt.play.t002.ottcn.com^'
+  - '||s.jpush.cn^'
+  - '||sdk1xyajs.data.p2cdn.com^'
+  - '||sis.jpush.io^'
+  - '||sky.tvos.skysrt.com^'
+  - '||skyworthdigital.com^'
+  - '||skyworthiot.com^'
+  - '||stats.jpush.cn^'
+  - '||status.tvos.skysrt.com^'
+  - '||status2.tvos.skysrt.com^'
+  - '||sv.video.qq.com^'
+  - '||taps.net^'
+  - '||tq.skysrt.com^'
+  - '||tracker.appadhoc.com^'
+  - '||tvapp.hpplay.cn^'
+  - '||tvos.skysrt.com^'
+  - '||tx.ctrmi.cn^'
+  - '||umengacs.m.taobao.com^'
+  - '||uop.umeng.com^'
+  - '||update01.skyworth-cloud.com.wswebpic.com^'
+  - '||update01.skyworth-cloud.com^'
+  - '||vqq.admaster.com.cn^'
+  - '||webapp.skysrt.com^'
+  - '||bak.bajintech.com^$important^'
+  - '||iwd.skysrt.com^$important^'
+  - '||ipv4only.arpa^$important^'
+  - '||api.bajintech.com^$important^'
+  - '||wifimodule.doubimeizhi.com^$important^'
+  - '||msy59wz.mqtt.iot.gz.baidubce.com^$important^'
+  - '||i.ytimg.com^$important^'
+  - '#度娘搜索去掉讨人嫌的百家号（这个有副作用，电脑端新闻版面里多数是百家号的域名冠名，会导致打不开）：'
+  - '#||baijiahao.baidu.com^'
+  - '#创维电视没事去连这些是给赚点击广告赚钱的吧？需要用的请把后面的IP换成自己电视的IP，另外，如果使用了，在电视上是打不开这些网站的哦'
+  - '||qq.com^$client=''10.0.0.99'''
+  - '||baidu.com^$client=''10.0.0.99'''
+  - '||aliyun.com^$client=''10.0.0.99''^'
+  - '||taobao.com^$client=''10.0.0.99''^'
+  - '||alibaba.com^$client=''10.0.0.99''^'
+  - '||aliyuncs.com^$client=''10.0.0.99''^'
+  - '#屏蔽苹果OTA更新'
+  - '||xp.apple.com^'
+  - '||mesu.apple.com^'
+  - '||gdmf.apple.com^'
+  - '||ocsp.apple.com^'
+  - '||appldnld.apple.com^'
+  - '||world-gen.g.aaplimg.com^'
+dhcp:
+  enabled: false
+  interface_name: br-lan
+  local_domain_name: lan
+  dhcpv4:
+    gateway_ip: 192.168.8.1
+    subnet_mask: 255.255.255.0
+    range_start: 192.168.8.2
+    range_end: 192.168.8.255
+    lease_duration: 86400
+    icmp_timeout_msec: 1000
+    options: []
+  dhcpv6:
+    range_start: ""
+    lease_duration: 86400
+    ra_slaac_only: false
+    ra_allow_slaac: false
+filtering:
+  blocking_ipv4: ""
+  blocking_ipv6: ""
+  blocked_services:
+    schedule:
+      time_zone: UTC
+    ids: []
+  protection_disabled_until: null
+  safe_search:
+    enabled: false
+    bing: true
+    duckduckgo: true
+    google: true
+    pixabay: true
+    yandex: true
+    youtube: true
+  blocking_mode: default
+  parental_block_host: family-block.dns.adguard.com
+  safebrowsing_block_host: standard-block.dns.adguard.com
+  rewrites:
+    - domain: wifi.weixin.qq.com
+      answer: 127.0.0.1
+    - domain: clock.redhat.com
+      answer: cn.ntp.org.cn
+    - domain: clock.cuhk.edu.hk
+      answer: cn.ntp.org.cn
+    - domain: https://www.meituan.com
+      answer: www.meituan.com
+  safebrowsing_cache_size: 1048576
+  safesearch_cache_size: 1048576
+  parental_cache_size: 1048576
+  cache_time: 30
+  filters_update_interval: 24
+  blocked_response_ttl: 300
+  filtering_enabled: true
+  parental_enabled: false
+  safebrowsing_enabled: false
+  protection_enabled: true
+clients:
+  runtime_sources:
+    whois: true
+    arp: true
+    rdns: true
+    dhcp: true
+    hosts: true
+  persistent: []
+log:
+  file: ""
+  max_backups: 0
+  max_size: 100
+  max_age: 3
+  compress: false
+  local_time: false
+  verbose: false
+os:
+  group: ""
+  user: ""
+  rlimit_nofile: 61500
+schema_version: 27
