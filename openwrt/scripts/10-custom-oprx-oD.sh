@@ -486,7 +486,7 @@ sed -i 's/Control/管控/g' package/diy/luci-app-parentcontrol/luasrc/controller
 #自动扩容分区
 git clone https://github.com/sirpdboy/luci-app-partexp package/diy/luci-app-partexp
 sed -i 's/Partition Expansion/分区扩容/g' package/diy/luci-app-partexp/luasrc/controller/partexp.lua
-#rm -rf package/diy/luci-app-partexp/po/zh_Hans
+#rm -rf package/diy/luci-app-partexp/po/zh_Hans  #sbwml上不能删除
 sed -i 's, - !, -o !,g' package/diy/luci-app-partexp/root/etc/init.d/partexp
 sed -i 's,expquit 1 ,#expquit 1 ,g' package/diy/luci-app-partexp/root/etc/init.d/partexp
 
