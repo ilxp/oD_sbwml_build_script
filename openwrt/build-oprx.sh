@@ -237,7 +237,8 @@ else
 fi
 cat > feeds.conf <<EOF
 src-git packages https://$github/openwrt/packages.git$packages
-src-git luci https://$github/openwrt/luci.git$luci
+#src-git luci https://$github/openwrt/luci.git$luci
+src-git luci https://$github/openwrt/luci.git;openwrt-23.05
 src-git routing https://$github/openwrt/routing.git$routing
 src-git telephony https://$github/openwrt/telephony.git$telephony
 EOF

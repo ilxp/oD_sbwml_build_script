@@ -951,7 +951,7 @@ git clone https://github.com/sbwml/package_new_natflow package/new/natflow
 
 #20、autocore
 rm -rf package/system/autocore  #24.10分支有问题。
-git clone -b openwrt-23.05 --depth 1 https://github.com/sbwml/autocore-arm  package/system/autocore
+git clone -b openwrt-24.10 --depth 1 https://github.com/sbwml/autocore-arm  package/system/autocore
 sed -i '/init/d' package/system/autocore/Makefile
 sed -i '/autocore.json/a\\	$(INSTALL_BIN) ./files/x86/autocore $(1)/etc/init.d/' package/system/autocore/Makefile
 sed -i '/autocore.json/a\\	$(INSTALL_DIR) $(1)/etc/init.d' package/system/autocore/Makefile
