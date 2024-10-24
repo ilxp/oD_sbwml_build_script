@@ -494,12 +494,12 @@ EOF
 	   ##${{ env.build_dir }}/openwrt/*-*.tar.gz
 	   #rm -rf ota
 	   
-	# 重命名固件 格式：OprX_eDR24.9.18-2024091815-c347f-x86-64-generic-squashfs-combined-efi.img.gz
+	# 重命名固件 格式：OprX_oDR24.9.18-2024091815-c347f-x86-64-generic-squashfs-combined-efi.img.gz
 	Build_DATE=$(date +%Y%m%d%H)  #日记+小时
     ReV_Date=`TZ=UTC-8 date +%y.%-m.%-d`  #24年1月1日：24.1.1  $ReV_Date
 	OP_VERSION=$ReV_Date-$Build_DATE
 	SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
-	sha5=$(${SHA256} | cut -c1-5)  #获取前5位
+	sha5=$(${SHA256} | cut -c1-5 | awk '{print $1}')  #获取前5位
 	rename -v "s/openwrt-/OprX-oDR$OP_VERSION-$sha5-/" bin/targets/x86/64*/* || true
 	
     # Backup download cache
