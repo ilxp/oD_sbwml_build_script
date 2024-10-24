@@ -66,6 +66,7 @@ CURRENT_DATE=$(date +%s)
 #CURRENT_DATE2=$(date +%Y%m%d)
 #CURRENT_DATE2=$(date +%m.%d.%Y)
 CURRENT_DATE2=$(TZ=UTC-8 date +'%m.%d.%Y')
+ReV_Date=`TZ=UTC-8 date +%y.%-m.%-d`  #24年1月1日：24.1.1
 
 # Cpus
 cores=`expr $(nproc --all) + 1`
@@ -492,6 +493,14 @@ EOF
 	   ##echo build_dir="/builder" >> "$GITHUB_ENV"
 	   ##${{ env.build_dir }}/openwrt/*-*.tar.gz
 	   #rm -rf ota
+	   
+	# 重命名固件 格式：OprX_eDR24.9.18-2024091815-c347f-x86-64-generic-squashfs-combined-efi.img.gz
+	Build_DATE=$(date +%Y%m%d%H)  #日记+小时
+    ReV_Date=`TZ=UTC-8 date +%y.%-m.%-d`  #24年1月1日：24.1.1  $ReV_Date
+	OP_VERSION=$ReV_Date-$ReV_Date
+	SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
+	sha5=$(egrep -o "\-[a-z0-9]+" <<< ${SHA256} | cut -c1-5 | awk 'END{print}')
+	rename -v "s/openwrt-/OprX-oDR$OP_VERSION-$sha5-/" bin/targets/x86/64*/* || true
 	
     # Backup download cache
     if [ "$isCN" = "CN" ] && [ "$1" = "rc2" ]; then

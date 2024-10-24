@@ -131,7 +131,7 @@ sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX
 
 #采用kiddin9大神的gpsysupgrade升级方式：https://github.com/ilxp/openwrt-gpsysupgrade-kiddin9：
 #格式：10.23.2024-oprx-oD-x86-64-generic-squashfs-combined-efi.img.gz   #oD是固件分类标签
-sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=$(shell date +%m.%d.%Y)-oprx-oD/g' include/image.mk
+#sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=$(shell date +%m.%d.%Y)-oprx-oD/g' include/image.mk  #在bulid.sh统一命名
 
 #采用Hyy2001X的升级方式：https://github.com/Hyy2001X/AutoBuild-Packages/tree/master/luci-app-autoupdate
 #格式：AutoBuild-lede-x86_64-R24.9.18-20241003-UEFI-Full-e99b6.img.gz 
