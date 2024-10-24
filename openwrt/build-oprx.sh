@@ -498,11 +498,11 @@ EOF
 	Build_DATE=$(date +%Y%m%d%H)  #日期+小时
     ReV_Date=`TZ=UTC-8 date +%y.%-m.%-d`  #24年1月1日：24.1.1  $ReV_Date
 	OP_VERSION=$ReV_Date-$Build_DATE
-	#SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
-	SHA5=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | cut -c1-5 | awk '{print $1}') #获取前5位
-	#sha5=$(egrep -o '[a-z0-9]+' <<< ${SHA256} | cut -c1-5)
-	#rename -v "s/openwrt-/OprX-oDR$OP_VERSION-$sha5-/" bin/targets/x86/64*/* || true
-	rename -v "s/openwrt*.img.gz/OprX-oDR$OP_VERSION-x86_64-efi-$sha5.img.gz/" bin/targets/x86/64*/* || true
+	SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
+	#SHA5=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | cut -c1-5 | awk '{print $1}') #获取前5位
+	sha5=$(egrep -o '[a-z0-9]+' <<< ${SHA256} | cut -c1-5)  #获取前5位
+	rename -v "s/openwrt-/OprX-oDR$OP_VERSION-$sha5-/" bin/targets/x86/64*/* || true
+	#rename -v "s/openwrt*.img.gz/OprX-oDR$OP_VERSION-x86_64-efi-$sha5.img.gz/" bin/targets/x86/64*/* || true
 	
     # Backup download cache
     if [ "$isCN" = "CN" ] && [ "$1" = "rc2" ]; then
