@@ -950,12 +950,30 @@ git clone https://github.com/sbwml/package_new_natflow package/new/natflow
 #sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 #20、autocore
-rm -rf package/system/autocore  #24.10分支有问题。
-git clone -b openwrt-24.10 --depth 1 https://github.com/sbwml/autocore-arm  package/system/autocore
-sed -i '/init/d' package/system/autocore/Makefile
-sed -i '/autocore.json/a\\	$(INSTALL_BIN) ./files/x86/autocore $(1)/etc/init.d/' package/system/autocore/Makefile
-sed -i '/autocore.json/a\\	$(INSTALL_DIR) $(1)/etc/init.d' package/system/autocore/Makefile
-cp -rf ./diydata/data/autocore  package/system/autocore/files/x86/
+rm -rf package/system/autocore  #sbwml的有问题。
+#git clone -b openwrt-24.10 --depth 1 https://github.com/sbwml/autocore-arm  package/system/autocore
+#sed -i '/init/d' package/system/autocore/Makefile
+#sed -i '/autocore.json/a\\	$(INSTALL_BIN) ./files/x86/autocore $(1)/etc/init.d/' package/system/autocore/Makefile
+#sed -i '/autocore.json/a\\	$(INSTALL_DIR) $(1)/etc/init.d' package/system/autocore/Makefile
+#cp -rf ./diydata/data/autocore  package/system/autocore/files/x86/
+
+#采用immortalwrt的
+# AutoCore
+merge_package openwrt-23.05 https://github.com/immortalwrt/immortalwrt.git package/new package/emortal/autocore
+sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/new/autocore/files/luci-mod-status-autocore.json
+rm -rf ./package/new/autocore/files/autocore
+wget https://raw.githubusercontent.com/QiuSimons/OpenWrt-Add/master/autocore -O package/new/autocore/files/autocore
+sed -i '/i386 i686 x86_64/{n;n;n;d;}' package/new/autocore/Makefile
+sed -i '/i386 i686 x86_64/d' package/new/autocore/Makefile
+rm -rf ./feeds/luci/modules/luci-base
+merge_package openwrt-23.05 https://github.com/immortalwrt/luci.git feeds/luci/modules modules/luci-base
+sed -i "s,(br-lan),,g" feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
+rm -rf ./feeds/luci/modules/luci-mod-status
+merge_package openwrt-23.05 https://github.com/immortalwrt/luci.git feeds/luci/modules modules/luci-mod-status
+rm -rf ./feeds/packages/utils/coremark
+merge_package master https://github.com/immortalwrt/packages.git feeds/packages/utils utils/coremark
+sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" feeds/packages/utils/coremark/Makefile
+merge_package openwrt-23.05 https://github.com/immortalwrt/immortalwrt.git package/utils package/utils/mhz
 
 #21、 samba4 - bump version
 rm -rf feeds/packages/net/samba4
