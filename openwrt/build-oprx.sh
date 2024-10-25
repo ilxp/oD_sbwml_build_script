@@ -501,9 +501,9 @@ EOF
 	SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
 	sha5=$(egrep -o '[a-z0-9]+' <<< ${SHA256} | cut -c1-5)  #获取前5位
 	#rename -v "s/openwrt-/OprX-oDR$OP_VERSION-$sha5-/" bin/targets/x86/64*/* || true
-	rename -v "s/openwrt-*-efi/OprX-openwrt-x86_64-R$OP_VERSION-UEFI-oDFull-$sha5/" bin/targets/x86/64*/*.gz || true
-	rename -v "s/openwrt-**-efi/OprX-openwrt-x86_64-R$OP_VERSION-UEFI-oDFull-$sha5/" bin/targets/x86/64*/*.gz || true
-	#rename -v "s/openwrt-x86-64-generic-squashfs-combined-efi/OprX-openwrt33-x86_64-R$OP_VERSION-UEFI-oDFull-$sha5/" bin/targets/x86/64*/*.gz || true  #能成功
+	rename -v "s/openwrt-*-efi/OprX-openwrt11-x86_64-R$OP_VERSION-UEFI-oDFull-squashfs-$sha5/" bin/targets/x86/64*/*.gz || true
+	rename -v "s/openwrt-**-efi/OprX-openwrt22-x86_64-R$OP_VERSION-UEFI-oDFull-squashfs-$sha5/" bin/targets/x86/64*/*.gz || true
+	rename -v "s/openwrt-x86-64-generic-squashfs-combined-efi/OprX-openwrt33-x86_64-R$OP_VERSION-UEFI-oDFull-squashfs-$sha5/" bin/targets/x86/64*/*.gz || true  #能成功
 	
     # Backup download cache
     if [ "$isCN" = "CN" ] && [ "$1" = "rc2" ]; then
